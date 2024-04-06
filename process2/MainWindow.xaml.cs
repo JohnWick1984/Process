@@ -29,8 +29,8 @@ namespace process2
         private void LaunchProcess_Click(object sender, RoutedEventArgs e)
         {
             _process = new Process();
-            _process.StartInfo.FileName = "cmd.exe"; // Замените на путь к своему исполняемому файлу
-            _process.StartInfo.Arguments = "/c tasklist /FI \"IMAGENAME eq svchost.exe\""; // Здесь можно изменить аргументы запуска для получения списка процессов svchost
+            _process.StartInfo.FileName = "cmd.exe"; 
+            _process.StartInfo.Arguments = "/c tasklist /FI \"IMAGENAME eq svchost.exe\""; 
             _process.StartInfo.UseShellExecute = false;
             _process.StartInfo.RedirectStandardOutput = true;
             _process.EnableRaisingEvents = true;
