@@ -18,48 +18,31 @@ namespace process2
 {
     public partial class MainWindow : Window
     {
-        private Process _process;
-        private DateTime _startTime;
+        private Process process;
+        private DateTime startTime;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void LaunchProcess_Click(object sender, RoutedEventArgs e)
+        private void LaunchButton_Click(object sender, RoutedEventArgs e)
         {
-            _process = new Process();
-            _process.StartInfo.FileName = "cmd.exe"; 
-            _process.StartInfo.Arguments = "/c tasklist /FI \"IMAGENAME eq svchost.exe\""; 
-            _process.StartInfo.UseShellExecute = false;
-            _process.StartInfo.RedirectStandardOutput = true;
-            _process.EnableRaisingEvents = true;
-            _process.OutputDataReceived += Process_OutputDataReceived;
-            _process.Exited += Process_Exited;
+            process = new Process();
+            process.StartInfo.FileName = @"C:\\Users\\Евгений\\Documents\\Учеба Академия ТОР\\Системное программирование\\Process\\Process\\bin\\Debug\\net8.0\\Process.exe"; 
+            process.EnableRaisingEvents = true;
+            process.Exited += Process_Exited;
 
-            _startTime = DateTime.Now;
-
-            _process.Start();
-            _process.BeginOutputReadLine();
-        }
-
-        private void Process_OutputDataReceived(object sender, DataReceivedEventArgs e)
-        {
-            if (!string.IsNullOrEmpty(e.Data))
-            {
-                Dispatcher.Invoke(() =>
-                {
-                    ProcessRuntimeTextBlock.Text += e.Data + "\n";
-                });
-            }
+            startTime = DateTime.Now;
+            process.Start();
         }
 
         private void Process_Exited(object sender, EventArgs e)
         {
-            TimeSpan runtime = DateTime.Now - _startTime;
             Dispatcher.Invoke(() =>
             {
-                ProcessRuntimeTextBlock.Text += $"Процесс завершен. Время выполнения: {runtime.TotalSeconds} секунд";
+                TimeSpan duration = DateTime.Now - startTime;
+                DurationTextBlock.Text = $"Продолжительность выполнения: {duration.TotalSeconds} секунд";
             });
         }
     }

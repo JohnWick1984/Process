@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button Content="Запустить процесс" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LaunchProcess_Click"/>
-        <TextBlock x:Name="ProcessRuntimeTextBlock" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Button x:Name="LaunchButton" Content="Запустить процесс" HorizontalAlignment="Center" VerticalAlignment="Center" Click="LaunchButton_Click"/>
+        <TextBlock x:Name="DurationTextBlock" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20"/>
     </Grid>
 </Window>
